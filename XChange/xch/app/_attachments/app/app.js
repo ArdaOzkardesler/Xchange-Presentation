@@ -1,69 +1,28 @@
-//Create new task
-function add_task(){
-	var id = $$("list").add({
-		done:-1, 
-		value:"ToDo"
-	}, 0);
-	$$("list").resize();
-	$$("list").edit(id);
-}
+//TODO - function that gets the currency from internet
 
-//Check a task. Mark it as being DONE
-function mark_task(id, e){ 
-	var item_id = $$('list').locate(e);
-	$$("list").getItem(item_id).done = 1;
-	$$("list").updateItem(item_id);
-	list_filter();
-}
+function syncDB(){}
 
-//filtering grid
-function list_filter(){
-	var val = $$('selector').getValue() || -1;
-
-	$$('list').filter(function(obj){
-		return obj.done == val;
-	});
-	$$('list').resize();
-}
-
-//Extend list so that it is editable
+//TODO - this will display the about screen
+function About(){
+	webix.alert({
+    title:"About",
+    ok:"Back",
+    type:"alert-warning",
+    text:"Semiha Konuralp </br> Ebru Yaren Çatak </br> Ece Aydın </br> Arda Özkardeşler </br> Mehmetcan Avdan",
+  callback:function(){}
+});
+	
+	
+	}
 webix.protoUI({
 	name:"editactivelist"
 }, webix.ActiveContent, webix.EditAbility, webix.ui.list);
 
-//Synchronization between local PouchDB and remote CouchDB
-function syncDB(){
-	var sync = myPouch.sync(remoteCouch, {
-	  retry: true
-	}).on('change', function (info) {
-	  // handle change
-		console.log(info);
-	}).on('paused', function () {
-	  // replication paused (e.g. user went offline)
-		console.log("paused");
-	}).on('active', function () {
-	  // replicate resumed (e.g. user went back online)
-		console.log("active");
-	}).on('denied', function (info) {
-	  // a document failed to replicate, e.g. due to permissions
-		console.log(info);
-	}).on('complete', function (info) {
-	  // handle complete
-		console.log(info);
-	}).on('error', function (err) {
-	  // handle error
-		console.log(err);
-		//cancel replication (test if it works?!?)
-		sync.cancel();
-	});	
-	
-}
-
 //PouchDB setup
 
-var myPouch = new PouchDB('todo');
+var myPouch = new PouchDB('xch');
 //Use your own database - this is a test database
-var remoteCouch = "http://dragosstoica.iriscouch.com/todo";
+
 
 //Proxy for PouchDB
 webix.proxy.proxyPouchDB = {
@@ -123,21 +82,10 @@ webix.proxy.proxyPouchDB = {
 var toolbar = {
 	view:"toolbar",
 	cols:[
-		{view:"button", id:"createTask", type:"icon", icon:"plus-square-o",
-			//Create a new task
-			click:add_task 
-		},
+		
 		{view:"button", id:"syncDB", type:"icon", icon:"refresh", click: syncDB},
 		{}, 
-		{view:"segmented", id:"selector", width: 200, options: [
-				{ id:-1, value:"Active"},
-				{ id:1, value:"Finished"}
-			],
-			on:{
-				//Show Active or Finished taks 
-				onChange : list_filter 
-			}
-		}
+		{view:"button", id:"About", type:"icon", icon:"info-circle", click: About}
 	]
 };
 
@@ -157,8 +105,7 @@ var list = {
             view:"button",
 			type:"icon",
 			icon:"check-circle",
-			width:32,
-			click: mark_task
+			width:32
         },		
         doneButton:{
             id:"doneButtonId",
@@ -189,13 +136,12 @@ var list = {
 		//save data after reordering
 		onAfterDropOrder:function(id){
 			webix.dp(this).save(id);
-		},
-		//filter just after data loading
-		onAfterLoad:list_filter
+		}
+		
 	},
 
-	url: "proxyPouchDB->todo",
-	save:"proxyPouchDB->todo"
+	url: "proxyPouchDB->xch",
+	save:"proxyPouchDB->xch"
 };
 
 app = {};
