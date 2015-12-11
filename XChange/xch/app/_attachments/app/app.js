@@ -1,8 +1,71 @@
 //TODO - function that gets the currency from internet
 
-function syncDB(){}
+function syncDB(){
+	//http://api.fixer.io/latest?base=RON
+	
+	webix.ajax().get("http://api.fixer.io/latest", { base : "RON" }, function(text, xml, xhr){
+    //response
+    console.log(text);
+});
 
-//TODO - this will display the about screen
+var promise = webix.ajax().get("http://api.fixer.io/latest", { base : "RON" });
+
+promise.then(function(realdata){
+    //success
+    console.log(realdata);
+    //$$("acc").index($$("info")).body="Today"+(new Date().toISOString())+"</br> Last Update" + (realdata.json()).date;
+    
+    //TODO - find another control
+    
+    
+    myPouch.get('_local/LASTUPDATE').then(function (doc) {
+	  // handle doc update
+	  var mydoc = realdata.json();
+	  mydoc._id = "_local/LASTUPDATE";
+	  mydoc._rev = doc._rev;
+	  myPouch.put(mydoc).then(function (response) {
+		  // handle response
+		  console.log(response);
+		}).catch(function (err) {
+		  console.log(err);
+		});
+	  
+	}).catch(function (err) {
+	  console.log(err);
+	  //create
+	  var mydoc = realdata.json();
+	  mydoc._id = "_local/LASTUPDATE";
+	  myPouch.put(mydoc).then(function (response) {
+		  // handle response
+		  console.log(response);
+		}).catch(function (err) {
+		  console.log(err);
+		});
+	});
+}).fail(function(err){
+    //error
+    webix.message({type:"error",text:err});
+});
+
+	/*
+	 * 
+	 * {
+	 * 	"base":"RON",
+	 *  "date":"2015-11-20",
+	 *  "rates":{
+	 *		"AUD":0.33361,
+	 * 		"BGN":0.44012,"BRL":0.89248,"CAD":0.3202,"CHF":0.24403,
+	 * 		"CNY":1.5356,"CZK":6.0829,"DKK":1.6788,"GBP":0.15775,"HKD":1.864,
+	 * 		"HRK":1.7165,"HUF":69.751,"IDR":3269.6,"ILS":0.93328,"INR":15.921,
+	 * 		"JPY":29.542,"KRW":277.79,"MXN":3.9894,"MYR":1.0307,"NOK":2.0711,
+	 * 		"NZD":0.36671,"PHP":11.304,"PLN":0.95439,"RUB":15.602,"SEK":2.0882,
+	 * 		"SGD":0.33964,"THB":8.596,"TRY":0.67881,"USD":0.24051,"ZAR":3.3499,"EUR":0.22503
+	 * 		}
+	 * }
+	 * */	
+	}
+
+
 function About(){
 	webix.alert({
     title:"About",
@@ -150,6 +213,15 @@ app.ui = {
 	id: "mainLayout",
 	rows: [
 		toolbar,
-		list	
+		{
+    view:"accordion",
+    id: "acc",
+    multi:true,
+    rows:[ //or rows 
+        { header:"Info", id:"info", body:"Today"+(new Date().toISOString())+"</br> Last Update" }, 
+        { header:"Exchange Rates", body:"USD</br>EUR</br>TRY</br>GBP" }
+    ]
+}
+			
 	]
 };
