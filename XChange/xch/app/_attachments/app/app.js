@@ -219,7 +219,7 @@ app.ui = {
     multi:true,
     rows:[ //or rows 
         { header:"Info", id:"info", body:"Today"+(new Date().toISOString())+"</br> Last Update" }, 
-        { header:"Exchange Rates", body:"USD</br>EUR</br>TRY</br>GBP" }
+        { header:"Exchange Rates", body:"Base : RON</br>USD---->4.10</br>EUR---->4.51</br>TRY---->1.37</br>GBP---->6.25" }
     ]
 }
 			
