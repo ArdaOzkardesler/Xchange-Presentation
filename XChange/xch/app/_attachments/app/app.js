@@ -3,10 +3,10 @@
 function syncDB(){
 	//http://api.fixer.io/latest?base=RON
 	
-	webix.ajax().get("http://api.fixer.io/latest", { base : "RON" }, function(text, xml, xhr){
+	/*webix.ajax().get("http://api.fixer.io/latest", { base : "RON" }, function(text, xml, xhr){
     //response
     console.log(text);
-});
+});*/
 
 var promise = webix.ajax().get("http://api.fixer.io/latest", { base : "RON" });
 
@@ -23,6 +23,12 @@ promise.then(function(realdata){
 	  var mydoc = realdata.json();
 	  mydoc._id = "_local/LASTUPDATE";
 	  mydoc._rev = doc._rev;
+	  $$('info').setValue("Today"+(new Date().toISOString())+"\nLast Update:"+mydoc.date);
+	  $$('currencylist').clearAll();
+	  $$('currencylist').parse([{"currency":"TRY", "rate":mydoc.rates.TRY},
+	  {"currency":"GBP","rate":mydoc.rates.GBP},
+	  {"currency":"EUR","rate":mydoc.rates.EUR},
+	  {"currency":"USD","rate":mydoc.rates.USD}]);
 	  myPouch.put(mydoc).then(function (response) {
 		  // handle response
 		  console.log(response);
@@ -103,6 +109,7 @@ webix.proxy.proxyPouchDB = {
 				todo_data.push(element.doc);
 			});
 			view.parse(todo_data, 'json');
+			
 		}).catch(function (err) {
 			//something really bad happened 
 		  console.log(err);
@@ -218,10 +225,23 @@ app.ui = {
     id: "acc",
     multi:true,
     rows:[ //or rows 
-        { header:"Info", id:"info", body:"Today"+(new Date().toISOString())+"</br> Last Update" }, 
-        { header:"Exchange Rates", body:"Base : RON</br>USD---->4.10</br>EUR---->4.51</br>TRY---->1.37</br>GBP---->6.25" }
+    {rows:[
+        { header:"Info" , body:
+			{ view:"textarea", id: "info", height:200, value: "Today "+(new Date().toISOString())+"\nLast Update" }
+        },
+        { header:"Exchange Rates , Base : RON", body: { id:"currencylist" , view:"list", autoheight: true ,
+    template:"#currency# : #rate#"
+   }
+}
+        ]
+	}
     ]
 }
 			
 	]
 };
+
+function testing (){
+	return 5;
+};
+
