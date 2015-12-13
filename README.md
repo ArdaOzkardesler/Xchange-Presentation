@@ -12,3 +12,7 @@ The application does not require any username or password to access .
 
 The date is shown above the exchange rates , in the same page . 
 Names of the developers can be found by tapping “About Us” button . 
+
+The QR Code can be found here :
+
+![alt tag](https://github.com/ArdaOzkardesler/Xchange-Presentation/blob/master/XChange/xch/app/_attachments/img/XchangeQRcode.png)
