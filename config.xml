@@ -35,7 +35,7 @@
 	      <splash src="www/img/splash.png"   density="port-ldpi"/>
 	      <splash src="www/img/splash.png"   density="port-mdpi"/>
 	      <splash src="www/img/splash.png"  density="port-xhdpi"/>
-	      <preference name="splashscreen", value="splash" />
+	     
 		  <preference name="SplashScreenDelay" value="10000" />
 		  
 	
