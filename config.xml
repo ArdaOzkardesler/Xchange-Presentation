@@ -37,6 +37,11 @@
 	      <splash src="www/img/screen-xhdpi-portrait.png"  density="port-xhdpi"/>
 	      <preference name="splashscreen", value="splash" />
 		  <preference name="SplashScreenDelay" value="10000" />
+		  
+		  <feature name="SplashScreen">
+   <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+</feature>
+
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
