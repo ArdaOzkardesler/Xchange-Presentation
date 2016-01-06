@@ -41,6 +41,12 @@ promise.then(function(realdata){
 	  //create
 	  var mydoc = realdata.json();
 	  mydoc._id = "_local/LASTUPDATE";
+	  $$('info').setValue("Today"+(new Date().toISOString())+"\nLast Update:"+mydoc.date);
+	  $$('currencylist').clearAll();
+	  $$('currencylist').parse([{"currency":"TRY", "rate":mydoc.rates.TRY},
+	  {"currency":"GBP","rate":mydoc.rates.GBP},
+	  {"currency":"EUR","rate":mydoc.rates.EUR},
+	  {"currency":"USD","rate":mydoc.rates.USD}]);
 	  myPouch.put(mydoc).then(function (response) {
 		  // handle response
 		  console.log(response);
