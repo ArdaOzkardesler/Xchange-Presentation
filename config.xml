@@ -26,15 +26,15 @@
       <icon src="www/img/Xch192.png"  density="xhdpi" />
 	  
 	  <!-- you can use any density that exists in the Android project -->
-	      <splash src="www/img/splash.png"  density="land-hdpi"/>
-	      <splash src="www/img/splash.png"  density="land-ldpi"/>
-	      <splash src="www/img/splash.png"  density="land-mdpi"/>
-	      <splash src="www/img/splash.png" density="land-xhdpi"/>
+	      <splash src="www/img/screen-hdpi-landscape.png"  density="land-hdpi"/>
+	      <splash src="www/img/screen-ldpi-landscape.png"  density="land-ldpi"/>
+	      <splash src="www/img/screen-mdpi-landscape.png"  density="land-mdpi"/>
+	      <splash src="www/img/screen-xhdpi-landscape.png" density="land-xhdpi"/>
 
-	      <splash src="www/img/splash.png"   density="port-hdpi"/>
-	      <splash src="www/img/splash.png"   density="port-ldpi"/>
-	      <splash src="www/img/splash.png"   density="port-mdpi"/>
-	      <splash src="www/img/splash.png"  density="port-xhdpi"/>
+	      <splash src="www/img/screen-hdpi-portrait.png"   density="port-hdpi"/>
+	      <splash src="www/img/screen-ldpi-portrait.png"   density="port-ldpi"/>
+	      <splash src="www/img/screen-mdpi-portrait.png"   density="port-mdpi"/>
+	      <splash src="www/img/screen-xhdpi-portrait.png"  density="port-xhdpi"/>
 	     
 		  <preference name="SplashScreenDelay" value="10000" />
 		  
