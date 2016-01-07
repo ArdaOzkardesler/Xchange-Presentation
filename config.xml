@@ -23,7 +23,7 @@
         <allow-intent href="market:*" />
 	  <icon src="www/img/ic_launcherldpi.png"   density="ldpi" />
       <icon src="www/img/ic_launchermdpi.png"   density="mdpi" />
-      <icon src="www/img/ic_launcherhdpi.png"  density="hdpi" />
+      <icon src="www/img/ic_launcherhdpi.png"   density="hdpi" />
       <icon src="www/img/ic_launcherxhdpi.png"  density="xhdpi" />
 	  
 	  <!-- you can use any density that exists in the Android project -->
@@ -37,8 +37,8 @@
 	      <splash src="www/img/screen-mdpi-portrait.png"   density="port-mdpi"/>
 	      <splash src="www/img/screen-xhdpi-portrait.png"  density="port-xhdpi"/>
 	     
-		  <preference name="SplashScreenDelay" value="10000" />
-		  <preference name="SplashScreen"                 value="screen" />
+		  <preference name="SplashScreenDelay" value="5000" />
+		  <preference name="SplashScreen"      value="screen" />
 		  
 	
 
