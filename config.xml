@@ -37,6 +37,7 @@
 	      <splash src="www/img/screen-xhdpi-portrait.png"  density="port-xhdpi"/>
 	     
 		  <preference name="SplashScreenDelay" value="10000" />
+		  <preference name="SplashScreen"                 value="screen" />
 		  
 	
 
