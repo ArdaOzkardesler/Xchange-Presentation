@@ -2,6 +2,7 @@
 
 ![alt tag](https://github.com/ArdaOzkardesler/Xchange-Presentation/blob/master/XChange/xch/app/_attachments/img/Xch192.png)
 
+# Scope
 
 With the help of this application , users can check EUR , USD , TRY and GBP exchange rates based on RON . 
 A wide group of users can benefit from this application , including tourists , businessmen and stock traders . 
